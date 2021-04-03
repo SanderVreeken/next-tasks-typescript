@@ -1,0 +1,33 @@
+.task {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+  margin-bottom: 1rem;
+
+  div[role="bottom"] {
+    align-items: center;
+    display: flex;
+    padding: 0.85rem 1rem;
+  }
+
+  div[role="top"] {
+    padding: 1rem;
+  }
+
+  p {
+    font-size: 0.83rem;
+  }
+
+  p[role="description"] {
+    display: -webkit-box;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  p[role="due-date"] {
+    margin-left: 0.6rem;
+  }
+}

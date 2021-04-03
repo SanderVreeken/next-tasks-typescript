@@ -1,0 +1,11 @@
+.order {
+  background-color: #f5f5f5;
+  border-radius: 5px 5px 0 0;
+  padding: 0.8rem;
+
+  > div:first-child {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0.8rem;
+  }
+}
