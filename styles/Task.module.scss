@@ -5,8 +5,6 @@
   margin-bottom: 1rem;
 
   div[role="bottom"] {
-    align-items: center;
-    display: flex;
     padding: 0.85rem 1rem;
   }
 
@@ -18,6 +16,7 @@
     font-size: 0.83rem;
   }
 
+  div[role="description"],
   p[role="description"] {
     display: -webkit-box;
     margin-top: 0.2rem;
