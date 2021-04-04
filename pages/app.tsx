@@ -9,7 +9,7 @@ import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
 import styles from '../styles/Home.module.scss'
 
 export default function App() {
-  const { data: tasks } = useSWR([READ_TASKS_QUERY], readTasks)
+  const { data: tasks, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
 
   return (
     <div className={styles.container}>
@@ -21,7 +21,7 @@ export default function App() {
         <main className={styles.main}>
             <Header elements={headerButtons} />
             <Header subheader={true} />
-            <Board tasks={tasks} />
+            <Board mutate={mutate} tasks={tasks} />
         </main>
 
         <footer className={styles.footer}>

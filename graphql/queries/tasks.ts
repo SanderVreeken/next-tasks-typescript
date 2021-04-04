@@ -11,3 +11,18 @@ export const READ_TASKS_QUERY = /* GraphQL */ `
         }
     }
 `
+
+export const UPDATE_TASK_MUTATION = /* GraphQL */ `
+    mutation($_id: String!, $task: TaskInput!) {
+        updateTask(_id: $_id, task: $task) {
+            _id
+            createdAt
+            description
+            dueAt
+            flagged
+            order
+            title
+        }
+    }
+`
+
