@@ -3,6 +3,5 @@ export interface ButtonThemeI {
     border: string
     color: string
     fontSize: string
-    height: string
     padding: string
 }

@@ -14,7 +14,7 @@
     align-items: center;
     border-bottom: 1px solid $main-border-color;
     display: grid;
-    height: 98px;
+    height: $navbar-height-mobile;
     gap: 0.375rem;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
