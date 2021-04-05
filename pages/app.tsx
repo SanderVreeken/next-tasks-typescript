@@ -10,7 +10,8 @@ import styles from '../styles/Home.module.scss'
 
 export default function App() {
   const { data: tasks, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
-  
+  console.log(`Variable: ${process.env.API_ENDPOINT}`)
+
   return (
     <div className={styles.container}>
         <Head>
