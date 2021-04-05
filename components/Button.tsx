@@ -3,15 +3,16 @@ import { ButtonThemeI } from '../interfaces/themes/Button'
 
 interface Props {
     icon?: JSX.Element
+    onClick?: (...args: any) => void
     theme: ButtonThemeI
     title: string
 }
 
-export default function Button({ icon, title, theme }: Props) {
+export default function Button({ icon, onClick, title, theme }: Props) {
     return (
-        <button className={styles.button} style={theme}>
+        <button className={styles.button} onClick={onClick} style={theme}>
             {icon}
-            {title}
+            <p>{title}</p>
         </button>
     )
 }

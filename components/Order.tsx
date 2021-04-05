@@ -9,11 +9,10 @@ import { UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
 
 interface Props {
     meta: OrderI
-    mutate?: (...args: any) => void
     tasks?: TaskI[]
 }
 
-export default function Order({ meta, mutate, tasks }: Props) {
+export default function Order({ meta, tasks }: Props) {
     const [{ isOver, item }, drop] = useDrop({
         accept: ItemTypes.TASK,
         drop: async () => {
@@ -21,7 +20,6 @@ export default function Order({ meta, mutate, tasks }: Props) {
                 const task = item.task
                 task.order = meta.order
                 await updateTask(UPDATE_TASK_MUTATION, { _id: task._id, task: task })
-                // mutate!({ readTasks: [...tasks!, task] })
             } catch(error) {
                 console.log(error)
             }

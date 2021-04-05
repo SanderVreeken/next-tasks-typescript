@@ -4,13 +4,14 @@ import useSWR from 'swr'
 
 import Board from '../components/Board'
 import Header from '../components/Header'
-import Modal from '../components/Modal'
+import Navbar from '../components/NavBar'
 import { headerButtons } from '../elements/buttons'
 import { readTasks } from '../graphql/fetchers/tasks'
 import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
 import styles from '../styles/App.module.scss'
 
 export default function App() {
+  const [modal, setModal] = useState(false)
   const { data: tasks, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
 
   return (
@@ -23,7 +24,8 @@ export default function App() {
         <main className={styles.main}>
             <Header elements={headerButtons} />
             <Header subheader={true} />
-            <Board mutate={mutate} tasks={tasks} />
+            <Navbar setModal={setModal} />
+            <Board modal={modal} setModal={setModal} tasks={tasks} />
         </main>
 
         <footer className={styles.footer}>
@@ -31,3 +33,5 @@ export default function App() {
     </div>
   )
 }
+
+

@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .order {
   background-color: #f5f5f5;
   border-radius: 5px 5px 0 0;
@@ -7,5 +9,11 @@
     align-items: center;
     display: flex;
     margin-bottom: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: $max-width) {
+  .order {
+    border-bottom: 1px solid $main-border-color;
   }
 }

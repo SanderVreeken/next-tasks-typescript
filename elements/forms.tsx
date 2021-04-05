@@ -7,7 +7,7 @@ export const taskForm = {
         title: 'Description',
         input: <textarea></textarea>,
     }, {
-        title: 'Due date',
+        title: 'Due Date',
         input: <input type='date'></input>,
     }]
 }
