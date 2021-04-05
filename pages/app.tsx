@@ -4,7 +4,7 @@ import useSWR from 'swr'
 
 import Board from '../components/Board'
 import Header from '../components/Header'
-import Navbar from '../components/NavBar'
+import Navbar from '../components/Navbar'
 import { headerButtons } from '../elements/buttons'
 import { readTasks } from '../graphql/fetchers/tasks'
 import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
