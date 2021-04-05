@@ -21,7 +21,7 @@ export default function Order({ meta, mutate, tasks }: Props) {
                 const task = item.task
                 task.order = meta.order
                 await updateTask(UPDATE_TASK_MUTATION, { _id: task._id, task: task })
-                mutate!({ readTasks: [...tasks!, task] })
+                // mutate!({ readTasks: [...tasks!, task] })
             } catch(error) {
                 console.log(error)
             }

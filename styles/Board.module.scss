@@ -11,7 +11,9 @@
 
 @media only screen and (max-width: $max-width) {
   .board {
+    gap: 0.875rem;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, "fit-content");
+    padding: 0;
   }
 }

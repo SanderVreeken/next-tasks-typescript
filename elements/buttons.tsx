@@ -13,3 +13,9 @@ export const headerButtons = [{
     icon: <AiOutlineBarChart />,
     title: 'Reports'
 }]
+
+export const taskButtons = [{
+    title: 'Cancel'
+}, {
+    title: 'Create Task'
+}]

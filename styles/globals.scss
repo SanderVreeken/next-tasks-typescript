@@ -26,6 +26,11 @@ button {
   justify-content: center;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   align-items: center;
   display: flex;
@@ -38,4 +43,23 @@ hr {
   border: none;
   height: 1px;
   margin: 0;
+}
+
+input {
+  height: 40px;
+  padding: 0 12px;
+}
+
+input,
+textarea {
+  border: 1px solid $main-border-color;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+  padding: 8px 12px;
+  resize: none;
 }
