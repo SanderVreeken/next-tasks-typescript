@@ -14,15 +14,14 @@
 }
 
 @media only screen and (max-width: $max-width) {
-  $remaining-height: ($header-height * 2) + $navbar-height-mobile;
+  $remaining-height-mobile: ($header-height * 2) + $navbar-height-mobile;
   .board {
     gap: 0;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, "fit-content");
     min-height: 0;
-    max-height: calc(100vh - #{$remaining-height});
-    max-height: calc(-webkit-fill-available - #{$remaining-height});
-    overflow: hidden;
+    max-height: calc(100vh - #{$remaining-height-mobile});
+    max-height: calc(-webkit-fill-available - #{$remaining-height-mobile});
     padding: 0;
   }
 }
