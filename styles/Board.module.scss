@@ -22,6 +22,7 @@
     min-height: 0;
     max-height: calc(100vh - #{$remaining-height});
     max-height: calc(-webkit-fill-available - #{$remaining-height});
+    overflow: hidden;
     padding: 0;
   }
 }
