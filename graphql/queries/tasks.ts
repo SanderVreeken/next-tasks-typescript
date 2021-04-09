@@ -1,3 +1,16 @@
+export const CREATE_TASK_MUTATION = /* GraphQL */ `
+    mutation($task: TaskInput!) {
+        createTask(task: $task) {
+            _id
+            createdAt
+            description
+            flagged
+            order
+            title
+        }
+    }
+`
+
 export const READ_TASKS_QUERY = /* GraphQL */ `
     {
         readTasks {

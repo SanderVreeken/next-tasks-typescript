@@ -1,8 +1,8 @@
-import FieldT from '../types/Field'
+import FieldI from './Field'
 
 interface FormI {
-    title: string,
-    fields: FieldT[]
+    title: string
+    fields: FieldI[]
 }
 
 export default FormI

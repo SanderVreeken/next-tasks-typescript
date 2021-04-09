@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+.dropdown {
+  cursor: pointer;
+  position: relative;
+  z-index: 4;
+
+  > div:first-child {
+    display: flex;
+
+    svg {
+      margin-left: 4px;
+    }
+  }
+
+  div[role="results"] {
+    background-color: white;
+    border: 1px solid $main-border-color;
+    border-radius: 0 0 5px 5px;
+    height: 250px;
+    opacity: 0.85;
+    position: absolute;
+    width: 100%;
+  }
+}
