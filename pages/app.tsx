@@ -12,7 +12,8 @@ import styles from '../styles/App.module.scss'
 
 export default function App() {
   const [modal, setModal] = useState(false)
-  const { data: tasks, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
+  const { data: tasks, error, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
+  console.log(error)
 
   return (
     <div className={styles.container}>
