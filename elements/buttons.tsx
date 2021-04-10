@@ -1,5 +1,11 @@
 import { AiFillRead, AiOutlineBarChart, AiOutlineCalendar, AiTwotoneAppstore } from 'react-icons/ai'
 
+export const createTaskButton = [{
+    title: 'Cancel'
+}, {
+    title: 'Create Task'
+}]
+
 export const headerButtons = [{
     icon: <AiOutlineCalendar />,
     title: 'Backlog'
@@ -14,8 +20,12 @@ export const headerButtons = [{
     title: 'Reports'
 }]
 
-export const taskButtons = [{
+export const updateTaskButtons = [{
     title: 'Cancel'
 }, {
-    title: 'Create Task'
+    title: 'Update Task'
+}, {
+    title: 'Delete Task'
 }]
+
+

@@ -11,6 +11,19 @@ export const CREATE_TASK_MUTATION = /* GraphQL */ `
     }
 `
 
+export const DELETE_TASK_MUTATION = /* GraphQL */ `
+    mutation($_id: String!) {
+        deleteTask(_id: $_id) {
+            _id
+            createdAt
+            description
+            flagged
+            order
+            title
+        }
+    }
+`
+
 export const READ_TASKS_QUERY = /* GraphQL */ `
     {
         readTasks {
