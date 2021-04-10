@@ -8,12 +8,15 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import Overlay from './Overlay'
 import Modal from './Modal'
 import { useStateValue } from './StateProvider'
+import Navbar from './Navbar'
+import { useState } from 'react'
 
 interface Props {
     tasks: undefined | { readTasks: TaskI[] }
 }
 
 export default function Board({ tasks }: Props) {
+    const [search, setSearch] = useState('')
     const [{ modal, selected }] = useStateValue()
 
     const renderBoard = () => {
@@ -21,7 +24,7 @@ export default function Board({ tasks }: Props) {
         if (tasks) {
             for (let n = 0; n < 4; n++) {
                 elements.push(
-                    <Order key={n} meta={orders[n]} tasks={tasks.readTasks} />
+                    <Order key={n} meta={orders[n]} search={search} tasks={tasks.readTasks} />
                 )
             }
         } else {
@@ -40,6 +43,7 @@ export default function Board({ tasks }: Props) {
 
     return (
         <DndProvider backend={HTML5Backend}>
+            <Navbar handleChange={setSearch} value={search} />
             <div className={styles.board}>
                 {renderBoard()}
             </div>

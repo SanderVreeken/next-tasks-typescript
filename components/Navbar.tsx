@@ -5,8 +5,13 @@ import { primaryButtonTheme } from '../themes/button'
 import Button from './Button'
 import { useStateValue } from './StateProvider'
 
-export default function Navbar() {
-    const [{ modal }, dispatch] = useStateValue()
+interface Props {
+    handleChange: (...args: any) => void
+    value: string
+}
+
+export default function Navbar({ handleChange, value }: Props) {
+    const [_, dispatch] = useStateValue()
 
     const handleClick = () => {
         dispatch({
@@ -17,7 +22,7 @@ export default function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-            <input placeholder='Search Items ...' type='text'></input>
+            <input onChange={(event) => handleChange(event.target.value)} placeholder='Search Items ...' type='text' value={value}></input>
             <span>
                 <Button icon={<AiOutlinePlus />} onClick={() => handleClick()} theme={primaryButtonTheme} title='New Task' />
             </span>

@@ -11,6 +11,12 @@
   min-height: calc(-webkit-fill-available - #{$remaining-height});
   overflow-y: scroll;
   padding: 0rem 1.5rem 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.board::-webkit-scrollbar {
+  display: none;
 }
 
 @media only screen and (max-width: $max-width) {

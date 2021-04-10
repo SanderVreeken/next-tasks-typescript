@@ -9,10 +9,11 @@ import { UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
 
 interface Props {
     meta: OrderI
+    search?: string
     tasks?: TaskI[]
 }
 
-export default function Order({ meta, tasks }: Props) {
+export default function Order({ meta, search, tasks }: Props) {
     const [{ isOver, item }, drop] = useDrop({
         accept: ItemTypes.TASK,
         drop: async () => {
@@ -34,8 +35,10 @@ export default function Order({ meta, tasks }: Props) {
         if (tasks) {
             // The tasks can only be filtered here, as filtering in the parent component would delay the refresh.
             const filteredTasks = tasks.filter((task) => {
-                return task.order === meta.order
+                const regex = new RegExp(search!, 'i')
+                return (task.order === meta.order) && (regex.test(task.title!))
             })
+
             return filteredTasks.map(task => (
                 <Task task={task} />
             ))
