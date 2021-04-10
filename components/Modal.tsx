@@ -43,7 +43,7 @@ export default function Modal({ selected, type }: Props) {
                 return (
                     <div className={styles.modal}>
                         <div role='top'>
-                            <Form form={taskForm} handleChange={handleChange} values={task} />
+                            <Form form={taskForm} handleChange={handleChange} selected={!!selected} values={task} />
                         </div>
                         <div role='bottom'>
                             {/* For this component custom buttons are being used. */}

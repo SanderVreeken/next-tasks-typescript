@@ -1,21 +1,18 @@
-import FormI from '../interfaces/Form'
+import FieldI from '../interfaces/Field'
 
-export const taskForm: FormI = {
-    title: 'Create Task',
-    fields: [{
-        element: 'input',
-        name: 'title',
-        title: 'Title',
-        type: 'text'
-    }, {
-        element: 'textarea',
-        name: 'description',
-        title: 'Description'
-    }, {
-        element: 'input',
-        name: 'dueAt',
-        placeholder: 'yyyy-mm-dd',
-        title: 'Due Date',
-        type: 'date'
-    }]
-}
+export const taskForm: FieldI[] = [{
+    element: 'input',
+    name: 'title',
+    title: 'Title',
+    type: 'text'
+}, {
+    element: 'textarea',
+    name: 'description',
+    title: 'Description'
+}, {
+    element: 'input',
+    name: 'dueAt',
+    placeholder: 'yyyy-mm-dd',
+    title: 'Due Date',
+    type: 'date'
+}]
