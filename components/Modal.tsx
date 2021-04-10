@@ -15,7 +15,7 @@ interface Props {
 
 export default function Modal({ selected, type }: Props) {
     const [task, setTask] = useState<TaskI>(selected ?? {})
-    const [_, dispatch] = useStateValue()
+    const [, dispatch] = useStateValue()
 
     const removeTask = async () => {
         try {
@@ -30,6 +30,10 @@ export default function Modal({ selected, type }: Props) {
         dispatch({
             type: 'UPDATE_MODAL',
             item: false
+        })
+        dispatch({
+            type: 'UPDATE_SELECTED',
+            item: undefined
         })
     }
 
