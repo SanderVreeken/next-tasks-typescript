@@ -10,8 +10,8 @@ export default function Overlay() {
             item: false
         })
         dispatch({
-            type: 'UPDATE_SELECTED_TASK',
-            item: {}
+            type: 'UPDATE_SELECTED',
+            item: undefined
         })
     }
 

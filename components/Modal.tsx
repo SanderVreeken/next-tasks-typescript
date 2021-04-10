@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { taskButtons } from '../elements/buttons'
 import { taskForm } from '../elements/forms'
-import { createTask } from '../graphql/fetchers/tasks'
-import { CREATE_TASK_MUTATION } from '../graphql/queries/tasks'
+import { createTask, updateTask } from '../graphql/fetchers/tasks'
+import { CREATE_TASK_MUTATION, UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
 import TaskI from '../interfaces/Task'
 import styles from '../styles/Modal.module.scss'
 import Form from './Form'
@@ -18,7 +18,12 @@ export default function Modal({ selected, type }: Props) {
     const submitTask = async () => {
         task.dueAt = new Date(task.dueAt!).valueOf()
         try {
-            const response = await createTask(CREATE_TASK_MUTATION, { task: task })
+            let response = {}
+            if (selected) {
+                response = await updateTask(UPDATE_TASK_MUTATION, { _id: selected._id, task: task })
+            } else {
+                response = await createTask(CREATE_TASK_MUTATION, { task: task })
+            }
             console.log(response)
         } catch(error) {
             console.log(error)
