@@ -1,6 +1,5 @@
 import FieldI from '../interfaces/Field'
 import FormI from '../interfaces/Form'
-import TaskI from '../interfaces/Task'
 import Field from './Field'
 
 interface Props { 

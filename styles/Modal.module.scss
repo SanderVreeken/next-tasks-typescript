@@ -35,6 +35,10 @@
     }
   }
 
+  div[role="button"] {
+    cursor: pointer;
+  }
+
   div[role="top"] {
     padding: 24px;
 

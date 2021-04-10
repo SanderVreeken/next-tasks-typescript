@@ -14,6 +14,7 @@ export const taskForm: FormI = {
     }, {
         element: 'input',
         name: 'dueAt',
+        placeholder: 'yyyy-mm-dd',
         title: 'Due Date',
         type: 'date'
     }]

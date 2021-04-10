@@ -48,7 +48,7 @@ export default function Modal({ selected, type }: Props) {
                         <div role='bottom'>
                             {/* For this component custom buttons are being used. */}
                             {taskButtons.map(button => (
-                                <div onClick={() => submitTask()}>
+                                <div onClick={() => submitTask()} role='button'>
                                     <p>{button.title.toUpperCase()}</p>
                                 </div>
                             ))}
