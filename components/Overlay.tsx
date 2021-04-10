@@ -1,11 +1,21 @@
 import styles from '../styles/Overlay.module.scss'
+import { useStateValue } from './StateProvider'
 
-interface Props {
-    onClick: (...args: any) => void
-}
+export default function Overlay() {
+    const [_, dispatch] = useStateValue()
 
-export default function Overlay({ onClick }: Props) {
+    const handleClick = () => {
+        dispatch({
+            type: 'UPDATE_MODAL',
+            item: false
+        })
+        dispatch({
+            type: 'UPDATE_SELECTED_TASK',
+            item: {}
+        })
+    }
+
     return (
-        <div className={styles.overlay} onClick={() => onClick(false)}></div>
+        <div className={styles.overlay} onClick={() => handleClick()}></div>
     )
 }

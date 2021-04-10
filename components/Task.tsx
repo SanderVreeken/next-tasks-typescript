@@ -6,6 +6,7 @@ import moment from 'moment'
 import Loading from './Loading'
 import ItemTypes from '../constants/ItemTypes'
 import { useDrag } from 'react-dnd'
+import { useStateValue } from './StateProvider'
 
 interface Props {
     isLoading?: boolean
@@ -22,7 +23,19 @@ export default function Task({ isLoading = false, task }: Props) {
             isDragging: !!monitor.isDragging()
         })
     })
+    const [, dispatch] = useStateValue()
 
+    const handleClick = () => {
+        dispatch({
+            type: 'UPDATE_MODAL',
+            item: true
+        })
+        dispatch({
+            type: 'UPDATE_SELECTED',
+            item: task
+        })
+    }
+    
     const renderTask = () => {
         if (isLoading) {
             const description = Math.floor(Math.random() * 10)
@@ -40,7 +53,7 @@ export default function Task({ isLoading = false, task }: Props) {
             )
         } else {
             return (
-                <div className={styles.task} ref={drag} style={{
+                <div className={styles.task} onClick={() => handleClick()} ref={drag} style={{
                     opacity: isDragging ? 0.5 : 1
                 }}>
                     <div role='top'>
@@ -62,5 +75,9 @@ export default function Task({ isLoading = false, task }: Props) {
         }
     }
 
-    return renderTask()
+    return (
+        <>
+            {renderTask()}
+        </>
+    )
 }

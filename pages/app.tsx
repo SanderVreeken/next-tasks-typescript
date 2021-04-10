@@ -11,9 +11,7 @@ import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
 import styles from '../styles/App.module.scss'
 
 export default function App() {
-  const [modal, setModal] = useState(false)
-  const { data: tasks, error, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
-  console.log(error)
+  const { data: tasks, mutate } = useSWR([READ_TASKS_QUERY], readTasks, { refreshInterval: 1000 })
 
   return (
     <div className={styles.container}>
@@ -25,8 +23,8 @@ export default function App() {
         <main className={styles.main}>
             <Header elements={headerButtons} />
             <Header subheader={true} />
-            <Navbar setModal={setModal} />
-            <Board modal={modal} setModal={setModal} tasks={tasks} />
+            <Navbar />
+            <Board tasks={tasks} />
         </main>
 
         <footer className={styles.footer}>

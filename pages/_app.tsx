@@ -1,10 +1,18 @@
-import '../styles/globals.scss'
-
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app'
 
+import reducer, { initialState } from '../Reducer'
+// The StateProvider is a higher order component.
+import { StateProvider } from '../components/StateProvider'
+
+import '../styles/globals.scss'
+
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Component {...pageProps} />
+    </StateProvider>
+  )
 }
 
 // Only uncomment this method if you have blocking data requirements for

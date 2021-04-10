@@ -8,11 +8,12 @@ import styles from '../styles/Modal.module.scss'
 import Form from './Form'
 
 interface Props {
+    selected?: TaskI
     type: 'task'
 }
 
-export default function Modal({ type }: Props) {
-    const [task, setTask] = useState<TaskI>({})
+export default function Modal({ selected, type }: Props) {
+    const [task, setTask] = useState<TaskI>(selected ?? {})
 
     const submitTask = async () => {
         task.dueAt = new Date(task.dueAt!).valueOf()
@@ -37,7 +38,7 @@ export default function Modal({ type }: Props) {
                 return (
                     <div className={styles.modal}>
                         <div role='top'>
-                            <Form form={taskForm} handleChange={handleChange} />
+                            <Form form={taskForm} handleChange={handleChange} values={task} />
                         </div>
                         <div role='bottom'>
                             {/* For this component custom buttons are being used. */}

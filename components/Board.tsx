@@ -7,14 +7,15 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import Overlay from './Overlay'
 import Modal from './Modal'
+import { useStateValue } from './StateProvider'
 
 interface Props {
-    modal: boolean
-    setModal: (...args: any) => void
     tasks: undefined | { readTasks: TaskI[] }
 }
 
-export default function Board({ modal, setModal, tasks }: Props) {
+export default function Board({ tasks }: Props) {
+    const [{ modal, selected }] = useStateValue()
+
     const renderBoard = () => {
         const elements: JSX.Element[] = []
         if (tasks) {
@@ -31,7 +32,7 @@ export default function Board({ modal, setModal, tasks }: Props) {
             }
         }
         if (modal) {
-            elements.push(<Overlay onClick={setModal} />, <Modal type='task' />)
+            elements.push(<Overlay />, <Modal selected={selected} type='task' />)
         }
 
         return elements
