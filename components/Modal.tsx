@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { createTaskButton, updateTaskButtons } from '../elements/buttons'
 import { taskForm } from '../elements/forms'
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function Modal({ selected, type }: Props) {
+    const router = useRouter()
     const [task, setTask] = useState<TaskI>(selected ?? {})
     const [, dispatch] = useStateValue()
 
@@ -63,6 +65,8 @@ export default function Modal({ selected, type }: Props) {
 
     const submitTask = async () => {
         task.dueAt = new Date(task.dueAt!).valueOf()
+        task.project = router.query.alias as string
+
         try {
             let response = {}
             if (selected) {
@@ -74,7 +78,6 @@ export default function Modal({ selected, type }: Props) {
         } catch(error) {
             console.log(error)
         }
-        
     }
 
     const renderModal = () => {

@@ -8,6 +8,7 @@ import Dropdown from './Dropdown'
 import useSWR from 'swr'
 import { readProjects } from '../graphql/fetchers/projects'
 import { READ_PROJECTS_QUERY } from '../graphql/queries/projects'
+import ProjectI from '../interfaces/Project'
 
 interface Props {
     elements?: ButtonI[]
@@ -17,9 +18,6 @@ interface Props {
 export default function Header({ elements, subheader = false }: Props) {
     const renderHeader = () => {
         if (subheader) {
-            const { data: projects } = useSWR([READ_PROJECTS_QUERY], readProjects)
-            console.log(projects)
-
             return (
                 <header style={{
                     backgroundColor: 'transparent',
@@ -27,7 +25,7 @@ export default function Header({ elements, subheader = false }: Props) {
                     justifyContent: 'space-between',
                 }}>
                     {/* <h4>Product Design Team</h4> */}
-                    <Dropdown options={projects} />
+                    <Dropdown />
                 </header>
             )
         } else {

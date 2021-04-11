@@ -12,33 +12,38 @@ import { useState } from 'react'
 import useSWR from 'swr'
 import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
 import { readTasks } from '../graphql/fetchers/tasks'
+import { useRouter } from 'next/router'
 
 export default function Board() {
-    const [project, setProject] = useState('6072b0337e2d8c557d1cf115')
+    const router = useRouter()
     const [search, setSearch] = useState('')
     const [{ modal, selected }] = useStateValue()
-    const { data: tasks } = useSWR([READ_TASKS_QUERY, project], readTasks, { refreshInterval: 1000 })
+    const { data: tasks, error } = useSWR(router.query.alias ? [READ_TASKS_QUERY, router.query.alias]: null, readTasks, { refreshInterval: 1000 })
 
     const renderBoard = () => {
-        const elements: JSX.Element[] = []
-        if (tasks) {
-            for (let n = 0; n < 4; n++) {
-                elements.push(
-                    <Order key={n} meta={orders[n]} search={search} tasks={tasks.readTasks} />
-                )
+        if (!error) {
+            const elements: JSX.Element[] = []
+            if (tasks) {
+                for (let n = 0; n < 4; n++) {
+                    elements.push(
+                        <Order key={n} meta={orders[n]} search={search} tasks={tasks.readTasks} />
+                    )
+                }
+            } else {
+                for (let n = 0; n < 4; n++) {
+                    elements.push(
+                        <Order key={n} meta={orders[n]} />
+                    )
+                }
             }
-        } else {
-            for (let n = 0; n < 4; n++) {
-                elements.push(
-                    <Order key={n} meta={orders[n]} />
-                )
+            if (modal) {
+                elements.push(<Overlay />, <Modal selected={selected} type='task' />)
             }
-        }
-        if (modal) {
-            elements.push(<Overlay />, <Modal selected={selected} type='task' />)
-        }
 
-        return elements
+            return elements
+        } else {
+            router.push('/')
+        }
     }
 
     return (

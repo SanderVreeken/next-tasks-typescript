@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Board from '../components/Board'
-import Header from '../components/Header'
-import { headerButtons } from '../elements/buttons'
-import styles from '../styles/App.module.scss'
+import Board from '../../../components/Board'
+import Header from '../../../components/Header'
+import { headerButtons } from '../../../elements/buttons'
+import styles from '../../../styles/App.module.scss'
 
 export default function App() {
   return (

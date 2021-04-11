@@ -3,11 +3,8 @@ import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import ProjectI from '../interfaces/Project'
 import styles from '../styles/Dropdown.module.scss'
 
-interface Props {
-    options: { readProjects: ProjectI[] }
-}
 
-export default function Dropdown({ options }: Props) {
+export default function Dropdown() {
     const [visibility, setVisibility] = useState(false)
 
     return (
