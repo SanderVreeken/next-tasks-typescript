@@ -18,14 +18,15 @@ interface Props {
 export default function Header({ elements, subheader = false }: Props) {
     const renderHeader = () => {
         if (subheader) {
+            const { data: projects } = useSWR([READ_PROJECTS_QUERY], readProjects)
+            
             return (
                 <header style={{
                     backgroundColor: 'transparent',
                     borderBottom: `1px solid ${Colors.mainBorderColor}`,
                     justifyContent: 'space-between',
                 }}>
-                    {/* <h4>Product Design Team</h4> */}
-                    <Dropdown />
+                    {projects && <Dropdown options={projects.readProjects} />}
                 </header>
             )
         } else {

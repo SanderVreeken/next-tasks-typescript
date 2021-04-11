@@ -65,13 +65,13 @@ export default function Modal({ selected, type }: Props) {
 
     const submitTask = async () => {
         task.dueAt = new Date(task.dueAt!).valueOf()
-        task.project = router.query.alias as string
 
         try {
             let response = {}
             if (selected) {
                 response = await updateTask(UPDATE_TASK_MUTATION, { _id: selected._id, task: task })
             } else {
+                task.project = router.query.alias as string
                 response = await createTask(CREATE_TASK_MUTATION, { task: task })
             }
             dismiss()
