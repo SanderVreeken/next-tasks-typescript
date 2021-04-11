@@ -5,6 +5,9 @@ import Button from './Button'
 import { headerButtonTheme } from '../themes/button'
 import Anchor from './Anchor'
 import Dropdown from './Dropdown'
+import useSWR from 'swr'
+import { readProjects } from '../graphql/fetchers/projects'
+import { READ_PROJECTS_QUERY } from '../graphql/queries/projects'
 
 interface Props {
     elements?: ButtonI[]
@@ -13,17 +16,22 @@ interface Props {
 
 export default function Header({ elements, subheader = false }: Props) {
     const renderHeader = () => {
-        return (
-            subheader ? (
+        if (subheader) {
+            const { data: projects } = useSWR([READ_PROJECTS_QUERY], readProjects)
+            console.log(projects)
+
+            return (
                 <header style={{
                     backgroundColor: 'transparent',
                     borderBottom: `1px solid ${Colors.mainBorderColor}`,
                     justifyContent: 'space-between',
                 }}>
                     {/* <h4>Product Design Team</h4> */}
-                    <Dropdown />
+                    <Dropdown options={projects} />
                 </header>
-            ) : (   
+            )
+        } else {
+            return (
                 <header style={{
                     backgroundColor: 'blue',
                     borderBottom: '0',
@@ -37,7 +45,7 @@ export default function Header({ elements, subheader = false }: Props) {
                     ))}
                 </header>
             )
-        )
+        }
     }
 
     return (

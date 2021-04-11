@@ -5,6 +5,7 @@ interface TaskI {
     dueAt?: number
     flagged?: boolean
     order?: number
+    project?: string
     title?: string
 }
 

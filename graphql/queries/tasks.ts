@@ -25,14 +25,15 @@ export const DELETE_TASK_MUTATION = /* GraphQL */ `
 `
 
 export const READ_TASKS_QUERY = /* GraphQL */ `
-    {
-        readTasks {
+    query($project: String!) {
+        readTasks(project: $project) {
             _id
             createdAt
             description
             dueAt
             flagged
             order
+            project
             title
         }
     }

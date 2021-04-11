@@ -3,6 +3,7 @@
 .dropdown {
   cursor: pointer;
   position: relative;
+  width: 25%;
   z-index: 4;
 
   > div:first-child {
@@ -20,6 +21,12 @@
     height: 250px;
     opacity: 0.85;
     position: absolute;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: $max-width) {
+  .dropdown {
     width: 100%;
   }
 }

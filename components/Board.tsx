@@ -1,4 +1,3 @@
-import TaskI from '../interfaces/Task'
 import styles from '../styles/Board.module.scss'
 import Order from './Order'
 import orders from '../elements/orders'
@@ -10,14 +9,15 @@ import Modal from './Modal'
 import { useStateValue } from './StateProvider'
 import Navbar from './Navbar'
 import { useState } from 'react'
+import useSWR from 'swr'
+import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
+import { readTasks } from '../graphql/fetchers/tasks'
 
-interface Props {
-    tasks: undefined | { readTasks: TaskI[] }
-}
-
-export default function Board({ tasks }: Props) {
+export default function Board() {
+    const [project, setProject] = useState('6072b0337e2d8c557d1cf115')
     const [search, setSearch] = useState('')
     const [{ modal, selected }] = useStateValue()
+    const { data: tasks } = useSWR([READ_TASKS_QUERY, project], readTasks, { refreshInterval: 1000 })
 
     const renderBoard = () => {
         const elements: JSX.Element[] = []

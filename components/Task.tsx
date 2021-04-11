@@ -23,7 +23,7 @@ export default function Task({ isLoading = false, task }: Props) {
             isDragging: !!monitor.isDragging()
         })
     })
-    const [, dispatch] = useStateValue()
+    const [_, dispatch] = useStateValue()
 
     const handleClick = () => {
         dispatch({
@@ -34,6 +34,10 @@ export default function Task({ isLoading = false, task }: Props) {
             type: 'UPDATE_SELECTED',
             item: task
         })
+    }
+
+    const handleFlagClick = () => {
+        console.log('Flag!🇳🇱')
     }
     
     const renderTask = () => {
@@ -53,10 +57,10 @@ export default function Task({ isLoading = false, task }: Props) {
             )
         } else {
             return (
-                <div className={styles.task} onClick={() => handleClick()} ref={drag} style={{
+                <div className={styles.task} ref={drag} style={{
                     opacity: isDragging ? 0.5 : 1
                 }}>
-                    <div role='top'>
+                    <div onClick={() => handleClick()} role='top'>
                         <h5>{task?.title}</h5>
                         <p role='description'>{task?.description}</p>
                     </div>
@@ -65,9 +69,11 @@ export default function Task({ isLoading = false, task }: Props) {
                         alignItems: 'center',
                         display: 'flex'
                     }}>
-                        <IconContext.Provider value={{ color: task?.flagged ? 'red' : 'black', size: '14px' }}>
-                            <AiFillFlag />
-                        </IconContext.Provider>
+                        <span onClick={() => handleFlagClick()} role='flag'>
+                            <IconContext.Provider value={{ color: task?.flagged ? 'red' : 'black', size: '14px' }}>
+                                <AiFillFlag />
+                            </IconContext.Provider>
+                        </span>
                         <p role='due-date'>{moment(task?.dueAt).format('DD MMM')}</p>
                     </div>
                 </div>

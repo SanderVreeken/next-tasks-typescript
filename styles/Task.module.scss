@@ -8,6 +8,11 @@
     padding: 0.85rem 1rem;
   }
 
+  span[role="flag"],
+  div[role="top"] {
+    cursor: pointer;
+  }
+
   div[role="top"] {
     padding: 1rem;
   }
