@@ -30,6 +30,7 @@ button {
   display: flex;
   height: 40px;
   justify-content: center;
+  margin: 0;
   outline: 0;
 }
 
@@ -59,6 +60,7 @@ input {
 }
 
 input[type="date"],
+input[type="password"],
 input[type="text"],
 textarea {
   border: 1px solid $main-border-color;

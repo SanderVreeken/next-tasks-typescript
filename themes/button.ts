@@ -1,5 +1,5 @@
 export const headerButtonTheme = {
-    backgroundColor: 'transparent',
+    backgroundColor: 'blue',
     border: '0',
     color: 'white', 
     fontSize: '0.875rem',

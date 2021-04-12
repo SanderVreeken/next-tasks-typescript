@@ -86,7 +86,7 @@ export default function Modal({ selected, type }: Props) {
                 return (
                     <div className={styles.modal}>
                         <div role='top'>
-                            <Form form={taskForm} handleChange={handleChange} selected={!!selected} values={task} />
+                            <Form form={taskForm} handleChange={handleChange} selected={!!selected} type={type} values={task} />
                         </div>
                         <div role='bottom' style={{
                             gridTemplateColumns: selected ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)'

@@ -10,7 +10,7 @@ export default function Option({ option, setVisibility }: Props) {
     const router = useRouter()
 
     const handleClick = () => {
-        router.push(`https://next-tasks-typescript.vercel.app/app/board/${option.alias}`)
+        router.push(`http://localhost:3000/app/board/${option.alias}`)
         setVisibility(false)
     }
 

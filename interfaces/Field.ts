@@ -3,7 +3,7 @@ interface FieldI {
     name: string
     placeholder?: string
     title: string
-    type?: 'text' | 'date'
+    type?: 'date' | 'password' | 'text' 
 }
 
 export default FieldI
