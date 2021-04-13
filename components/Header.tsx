@@ -8,7 +8,6 @@ import Dropdown from './Dropdown'
 import useSWR from 'swr'
 import { readProjects } from '../graphql/fetchers/projects'
 import { READ_PROJECTS_QUERY } from '../graphql/queries/projects'
-import ProjectI from '../interfaces/Project'
 
 interface Props {
     elements?: ButtonI[]
@@ -32,7 +31,7 @@ export default function Header({ elements, subheader = false }: Props) {
         } else {
             return (
                 <header style={{
-                    backgroundColor: 'blue',
+                    backgroundColor: '#3b83f6',
                     borderBottom: '0',
                     justifyContent: 'center'
                 }}>

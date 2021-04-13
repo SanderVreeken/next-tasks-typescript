@@ -1,5 +1,5 @@
 export const headerButtonTheme = {
-    backgroundColor: 'blue',
+    backgroundColor: '#3b83f6',
     border: '0',
     color: 'white', 
     fontSize: '0.875rem',
@@ -7,7 +7,7 @@ export const headerButtonTheme = {
 }
 
 export const primaryButtonTheme = {
-    backgroundColor: 'blue',
+    backgroundColor: '#3b83f6',
     border: '0',
     color: 'white', 
     fontSize: '0.875rem',

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Form from '../components/Form'
 import { registerForm } from '../elements/forms'
+import parseError from '../functions/parseError'
 import graphQLClient from '../graphql/client'
 import { CREATE_USER_MUTATION } from '../graphql/queries/users'
 import styles from '../styles/Register.module.scss'
@@ -24,7 +25,7 @@ export default function Register() {
             await graphQLClient.request(CREATE_USER_MUTATION, { user: user }) 
             router.push('http://localhost:3000/app/board/management-team')
         } catch(error) {
-            console.log(error)
+            console.log(parseError(error))
         }
     }
 

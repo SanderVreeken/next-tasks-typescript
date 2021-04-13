@@ -5,7 +5,7 @@ import styles from '../styles/Form.module.scss'
 import Button from './Button'
 import { headerButtonTheme } from '../themes/button'
 import { useRouter } from 'next/router'
-import { capitalizeFirstLetter } from '../functions/capitalizeFirstLetter'
+import capitalizeFirstLetter from '../functions/capitalizeFirstLetter'
 
 interface Props { 
     form: FieldI[]

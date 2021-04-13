@@ -12,11 +12,25 @@
   span[role="right"] {
     align-items: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 0 4rem;
 
     form {
-      width: 100%;
+      width: min(412px, 100%);
+    }
+  }
+}
+
+@media only screen and (max-width: $max-width) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 90%);
+
+    span[role="right"] {
+      border-bottom: 1px solid $main-border-color;
+      border-right: 0;
+      grid-area: 1/1/2/2;
+      justify-content: center;
     }
   }
 }

@@ -12,6 +12,13 @@ export const loginForm: FieldI[] = [{
     type: 'password'
 }]
 
+export const passwordForgotField: FieldI = {
+    element: 'input',
+    name: 'email',
+    title: 'Email',
+    type: 'text'
+}
+
 export const registerForm: FieldI[] = [{
     element: 'input',
     name: 'username',
