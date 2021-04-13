@@ -42,7 +42,7 @@ export default function Board() {
 
             return elements
         } else {
-            // router.push('/')
+            router.push('/')
         }
     }
 
