@@ -34,11 +34,11 @@ export default function Header({ elements, subheader = false, token }: Props) {
             }
 
             // TODO: Check whether this should be useLayoutEffect instead.
-            useEffect(() => {
-                if (!token) {
-                    router.push('/login')
-                }
-            })
+            // useEffect(() => {
+            //     if (!token) {
+            //         router.push('/login')
+            //     }
+            // })
             
             if (!projects && !error) {
                 return null
