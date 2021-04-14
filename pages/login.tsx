@@ -26,7 +26,8 @@ export default function Login() {
         try {
             const response = await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
             console.log(response)
-            router.push('/app/board/management-team')
+            router.push('https://www.google.com/')
+            // router.push('/app/board/management-team')
         } catch(error) {
             console.log(parseError(error))
         }
