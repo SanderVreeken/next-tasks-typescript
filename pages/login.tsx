@@ -25,7 +25,7 @@ export default function Login() {
         event.preventDefault()
         try {
             await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
-            router.push('http://localhost:3000/app/board/management-team')
+            router.push('/app/board/management-team')
         } catch(error) {
             console.log(parseError(error))
         }

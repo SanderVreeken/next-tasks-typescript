@@ -2,9 +2,10 @@ export const CREATE_USER_MUTATION = /* GraphQL */ `
     mutation($user: UserInput!) {
         createUser(user: $user) {
             _id
-            createdAt
-            email
-            username
+            admins
+            alias
+            title
+            users
         }
     }
 `

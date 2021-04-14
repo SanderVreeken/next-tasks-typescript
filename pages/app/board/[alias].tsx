@@ -4,7 +4,11 @@ import Header from '../../../components/Header'
 import { headerButtons } from '../../../elements/buttons'
 import styles from '../../../styles/App.module.scss'
 
-export default function App() {
+interface Props {
+  token: string
+}
+
+export default function App({ token }: Props) {
   return (
     <div className={styles.container}>
         <Head>
@@ -14,7 +18,7 @@ export default function App() {
 
         <main className={styles.main}>
             <Header elements={headerButtons} />
-            <Header subheader={true} />
+            <Header subheader={true} token={token} />
             <Board />
         </main>
 
@@ -22,6 +26,20 @@ export default function App() {
         </footer>
     </div>
   )
+}
+
+export const getServerSideProps = async (context: any) => {
+  const cookies = context.req.headers.cookie?.split(';').reduce((res: any, c: any) => {
+      const [key, val] = c.trim().split('=').map(decodeURIComponent)
+      try {
+          return Object.assign(res, { [key]: JSON.parse(val) })
+      } catch (e) {
+          return Object.assign(res, { [key]: val })
+      }
+  }, {})
+  const token = cookies?.token ?? null
+
+  return { props: { token } }
 }
 
 

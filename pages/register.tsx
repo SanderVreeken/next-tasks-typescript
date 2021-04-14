@@ -22,10 +22,11 @@ export default function Register() {
     const submitUser = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
         try {
-            await graphQLClient.request(CREATE_USER_MUTATION, { user: user }) 
-            router.push('http://localhost:3000/app/board/management-team')
+            const response = await graphQLClient.request(CREATE_USER_MUTATION, { user: user }) 
+            const alias = response.createUser.alias
+            router.push(`/app/board/${alias}`)
         } catch(error) {
-            console.log(parseError(error))
+            console.log(error)
         }
     }
 
