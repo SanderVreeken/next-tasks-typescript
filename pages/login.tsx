@@ -24,7 +24,8 @@ export default function Login() {
     const submitUser = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
         try {
-            await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
+            const response = await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
+            console.log(response)
             router.push('/app/board/management-team')
         } catch(error) {
             console.log(parseError(error))
