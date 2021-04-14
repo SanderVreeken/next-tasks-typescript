@@ -26,7 +26,7 @@ export default function Login() {
         try {
             const response = await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
             console.log(response)
-            router.push('https://next-tasks-typescript.vercel.app/app/board/sandervreeken')
+            router.push('/app/board/sandervreeken')
             // router.push('/app/board/management-team')
         } catch(error) {
             console.log(parseError(error))

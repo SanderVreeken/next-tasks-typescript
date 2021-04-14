@@ -24,7 +24,7 @@ export default function Register() {
         try {
             const response = await graphQLClient.request(CREATE_USER_MUTATION, { user: user }) 
             const alias = response.createUser.alias
-            router.push(`https://next-tasks-typescript.vercel.app/app/board/${alias}`)
+            router.push(`/app/board/${alias}`)
         } catch(error) {
             console.log(error)
         }
