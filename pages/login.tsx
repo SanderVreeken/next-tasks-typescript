@@ -25,9 +25,7 @@ export default function Login() {
         event.preventDefault()
         try {
             const response = await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
-            console.log(response)
-            router.push('/app/board/sandervreeken')
-            // router.push('/app/board/management-team')
+            router.push(`/app/board/${response.readUser.username.toLowerCase()}`)
         } catch(error) {
             console.log(parseError(error))
         }

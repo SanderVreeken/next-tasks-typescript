@@ -12,6 +12,11 @@ export const CREATE_USER_MUTATION = /* GraphQL */ `
 
 export const READ_USER_MUTATION = /* GraphQL */ `
     mutation($user: UserInput!) {
-        readUser(user: $user)
+        readUser(user: $user) {
+            _id
+            createdAt
+            email
+            username
+        }
     }
 `

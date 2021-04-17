@@ -5,60 +5,24 @@ import Button from './Button'
 import { headerButtonTheme } from '../themes/button'
 import Anchor from './Anchor'
 import Dropdown from './Dropdown'
-import useSWR from 'swr'
-import { readProjects } from '../graphql/fetchers/projects'
-import { READ_PROJECTS_QUERY } from '../graphql/queries/projects'
-import { useRouter } from 'next/router'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import ProjectI from '../interfaces/Project'
 
 interface Props {
     elements?: ButtonI[]
+    projects?: ProjectI[]
     subheader?: boolean
-    token?: string
 }
 
-export default function Header({ elements, subheader = false, token }: Props) {
-    const router = useRouter()
-    const [isLoading, setIsLoading] = useState(true)
-    
+export default function Header({ elements, projects, subheader = false }: Props) {    
     const renderHeader = () => {
         if (subheader) { 
-            const { data: projects, error } = useSWR(token ? [READ_PROJECTS_QUERY, token] : null, readProjects)
-
-            const filterProjects = () => {
-                const path = router.query.alias
-                const included = projects?.readProjects.filter((project: any) => {
-                    return path === project.alias
-                })
-                return included.length === 1 ? true : false
-            }
-
-            // TODO: Check whether this should be useLayoutEffect instead.
-            // useEffect(() => {
-            //     if (!token) {
-            //         router.push('/login')
-            //     }
-            // })
-            
-            if (!projects && !error) {
-                return null
-            } else if(error) {
-                // console.log(error)
-                return null
-            } else if (projects?.readProjects) {
-                if (!filterProjects()) {
-                    const path = `/app/board/${projects.readProjects[0].alias}`
-                    router.push(path)
-                }
-            }
-
             return (
                 <header style={{
                     backgroundColor: 'transparent',
                     borderBottom: `1px solid ${Colors.mainBorderColor}`,
                     justifyContent: 'space-between',
                 }}>
-                    {filterProjects() && <Dropdown options={projects.readProjects} />}
+                    {projects && <Dropdown options={projects} />}
                 </header>
             )
         } else {

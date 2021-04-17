@@ -25,8 +25,8 @@ export const DELETE_TASK_MUTATION = /* GraphQL */ `
 `
 
 export const READ_TASKS_QUERY = /* GraphQL */ `
-    query($alias: String!) {
-        readTasks(alias: $alias) {
+    query($alias: String!, $token: String!) {
+        readTasks(alias: $alias, token: $token) {
             _id
             createdAt
             description

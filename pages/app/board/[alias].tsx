@@ -1,31 +1,64 @@
 import Head from 'next/head'
+import useSWR from 'swr'
 import Board from '../../../components/Board'
 import Header from '../../../components/Header'
 import { headerButtons } from '../../../elements/buttons'
+import { readProjects } from '../../../graphql/fetchers/projects'
+import { READ_PROJECTS_QUERY } from '../../../graphql/queries/projects'
 import styles from '../../../styles/App.module.scss'
+import { useRouter } from 'next/router'
+import Modal from '../../../components/Modal'
+import Overlay from '../../../components/Overlay'
 
 interface Props {
   token: string
 }
 
 export default function App({ token }: Props) {
-  return (
-    <div className={styles.container}>
-        <Head>
-            <title></title>
-            <link rel='icon' href='/favicon.ico' />
-        </Head>
+  const router = useRouter()
+  const { data: projects } = useSWR(token ? [READ_PROJECTS_QUERY, token] : null, readProjects)
 
-        <main className={styles.main}>
-            <Header elements={headerButtons} />
-            <Header subheader={true} token={token} />
-            <Board />
-        </main>
+  const authorized = () => {
+      const path = router.query.alias
+      const included = projects?.readProjects.filter((project: any) => {
+          return path === project.alias
+      })
+      return included.length === 1 ? true : false
+  }
 
-        <footer className={styles.footer}>
-        </footer>
-    </div>
-  )
+  const renderSubheader = () => {
+    if (projects) {
+      if (authorized()) {
+        return <Header projects={projects.readProjects} subheader={true} />
+      } 
+    } else {
+      return <Header subheader={true} />
+    }
+  }
+
+  const renderApp = () => {
+    return (
+      <div className={styles.container}>
+          <Head>
+              <title></title>
+              <link rel='icon' href='/favicon.ico' />
+          </Head>
+  
+          <main className={styles.main}>
+              <Header elements={headerButtons} />
+              {renderSubheader()}
+              <Board token={token} />
+              {/* <Overlay />
+              <Modal type='task' /> */}
+          </main>
+  
+          <footer className={styles.footer}>
+          </footer>
+      </div>
+    )
+  }
+
+  return renderApp()
 }
 
 export const getServerSideProps = async (context: any) => {
