@@ -11,7 +11,7 @@ import { useStateValue } from './StateProvider'
 
 interface Props {
     selected?: TaskI
-    type: 'task'
+    type: 'non-existent' | 'task' | 'unauthorized'
 }
 
 export default function Modal({ selected, type }: Props) {
@@ -21,7 +21,7 @@ export default function Modal({ selected, type }: Props) {
 
     const removeTask = async () => {
         try {
-            const response = await deleteTask(DELETE_TASK_MUTATION, { _id: task._id })
+            await deleteTask(DELETE_TASK_MUTATION, { _id: task._id })
             dismiss()
         } catch(error) {
             console.log(error)
@@ -82,6 +82,18 @@ export default function Modal({ selected, type }: Props) {
 
     const renderModal = () => {
         switch(type) {
+            case 'non-existent':
+                return (
+                    <div className={styles.modal}>
+                        <div role='top'>
+                            <h3>Oops!</h3> 
+                            <p>The project you are trying to access does not exist yet, would you create it?</p> 
+                        </div>
+                        <div role='bottom'>
+                            
+                        </div>
+                    </div>
+                )
             case 'task':
                 return (
                     <div className={styles.modal}>
@@ -92,6 +104,18 @@ export default function Modal({ selected, type }: Props) {
                             gridTemplateColumns: selected ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)'
                         }}>
                             {renderButtons()}
+                        </div>
+                    </div>
+                )
+            case 'unauthorized':
+                return (
+                    <div className={styles.modal}>
+                        <div role='top'>
+                            <h3>Unauthorized!</h3> 
+                            <p>You are not a member of this project. Would you like to request access to this project?</p> 
+                        </div>
+                        <div role='bottom'>
+                            
                         </div>
                     </div>
                 )

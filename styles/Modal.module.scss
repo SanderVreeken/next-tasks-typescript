@@ -28,11 +28,6 @@
     div:last-child {
       border-right: 0;
     }
-
-    p {
-      font-weight: 300;
-      font-size: 12px;
-    }
   }
 
   div[role="button"] {
@@ -41,6 +36,11 @@
 
   div[role="top"] {
     padding: 24px;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 14px;
   }
 }
 

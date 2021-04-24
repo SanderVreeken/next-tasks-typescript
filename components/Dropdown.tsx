@@ -15,7 +15,7 @@ export default function Dropdown({ options }: Props) {
     const filterTitle = () => {
         return options.filter(option => {
             return option.alias === router.query.alias
-        })[0].title
+        })[0]?.title
     }
 
     return (
