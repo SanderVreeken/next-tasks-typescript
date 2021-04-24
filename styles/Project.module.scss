@@ -1,0 +1,73 @@
+@use 'variables' as *;
+
+.project {
+  background-color: white;
+  border: 1px solid $main-border-color;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+
+  h2 {
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  span[role="bottom"] {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 24px;
+
+    > span {
+      align-items: center;
+      display: flex;
+
+      h5 {
+        margin-left: 6px;
+      }
+    }
+  }
+
+  span[role="bottom"],
+  span[role="top"] {
+    display: flex;
+  }
+
+  span[role="top"] {
+    border-bottom: 1px solid $main-border-color;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+
+    button {
+      margin-left: 8px;
+    }
+
+    span[role="title"] {
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      span {
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    span[role="link"] {
+      align-items: center;
+      display: flex;
+
+      h5 {
+        font-weight: 500;
+        margin-left: 6px;
+      }
+    }
+
+    > span {
+      display: flex;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.dashboard {
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  // TODO: Check whether this is actually needed after the other elements are initialized.
+  min-height: 500px;
+
+  > span {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    grid-template-rows: 1fr;
+    width: 1000px;
+  }
+
+  span[role="bottom"] {
+    display: flex;
+    height: 48px;
+  }
+
+  span[role="leading"] {
+    position: relative;
+    top: -24px;
+  }
+}

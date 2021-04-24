@@ -7,7 +7,7 @@ import Form from '../components/Form'
 import { loginForm } from '../elements/forms'
 import parseError from '../functions/parseError'
 import graphQLClient from '../graphql/client'
-import { READ_USER_MUTATION } from '../graphql/queries/users'
+import { VERIFY_USER_MUTATION } from '../graphql/queries/users'
 import styles from '../styles/Login.module.scss'
 
 export default function Login() {
@@ -24,10 +24,10 @@ export default function Login() {
     const submitUser = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault()
         try {
-            const response = await graphQLClient.request(READ_USER_MUTATION, { user: user }) 
-            router.push(`/app/board/${response.readUser.username.toLowerCase()}`)
+            const response = await graphQLClient.request(VERIFY_USER_MUTATION, { user: user }) 
+            router.push(`/app/board/${response.verifyUser.username.toLowerCase()}`)
         } catch(error) {
-            console.log(parseError(error))
+            console.log(error)
         }
     }
 

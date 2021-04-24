@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+.wrapper {
+  display: flex;
+  border-bottom: 1px solid $main-border-color;
+  height: 234px;
+  justify-content: center;
+  padding: 48px 0 84px;
+  width: 100%;
+
+  div[role="image"] {
+    background-image: url("../public/assets/profile.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 9999px;
+    height: 100px;
+    margin-right: 24px;
+    width: 100px;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  span {
+    align-items: center;
+    // background-color: red;
+    display: flex;
+    height: 100%;
+    width: 1000px;
+  }
+
+  span[role="trailing"] {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
