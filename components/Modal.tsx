@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { createTaskButton, updateTaskButtons } from '../elements/buttons'
 import { taskForm } from '../elements/forms'
+import graphQLClient from '../graphql/client'
 import { createTask, deleteTask, updateTask } from '../graphql/fetchers/tasks'
 import { CREATE_TASK_MUTATION, DELETE_TASK_MUTATION, UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
 import FieldI from '../interfaces/Field'
@@ -78,7 +79,7 @@ export default function Modal({ form, formType, prompt, selected, type }: Props)
                 response = await updateTask(UPDATE_TASK_MUTATION, { _id: selected._id, task: task })
             } else {
                 task.project = router.query.alias as string
-                response = await createTask(CREATE_TASK_MUTATION, { task: task })
+                response = await graphQLClient.request(CREATE_TASK_MUTATION, { task: task })
             }
             dismiss()
         } catch(error) {

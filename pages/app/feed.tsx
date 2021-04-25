@@ -9,8 +9,10 @@ import Overlay from '../../components/Overlay'
 import Wrapper from '../../components/Wrapper'
 import { headerButtons } from '../../elements/buttons'
 import { projectForm } from '../../elements/forms'
+import { readLogs } from '../../graphql/fetchers/logs'
 import { readProjects } from '../../graphql/fetchers/projects'
 import { readUser } from '../../graphql/fetchers/users'
+import { READ_LOGS_QUERY } from '../../graphql/queries/logs'
 import { READ_PROJECTS_QUERY } from '../../graphql/queries/projects'
 import { READ_USER_QUERY } from '../../graphql/queries/users'
 import styles from '../../styles/Feed.module.scss'
@@ -21,6 +23,7 @@ interface Props {
 
 export default function Feed({ token }: Props) {
   const router = useRouter()
+  const { data: logs } = useSWR(token ? [READ_LOGS_QUERY, token]: null, readLogs)
   const { data: projects } = useSWR(token ? [READ_PROJECTS_QUERY, token] : null, readProjects)
   const { data: user } = useSWR(token ? [READ_USER_QUERY, token] : null, readUser)
 
@@ -38,7 +41,7 @@ export default function Feed({ token }: Props) {
       <main className={styles.main}>
         <Header elements={headerButtons} />
         <Wrapper user={user} />
-        <Dashboard projects={projects} user={user?.readUser} />
+        <Dashboard logs={logs} projects={projects} user={user?.readUser} />
         {/* <Overlay header={1} />
         <Modal form={projectForm} formType='project' type='form' /> */}
       </main>

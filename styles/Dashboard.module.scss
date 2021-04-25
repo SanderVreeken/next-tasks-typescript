@@ -7,7 +7,8 @@
 
   > span {
     display: grid;
-    grid-template-columns: 5fr 4fr;
+    gap: 4rem;
+    grid-template-columns: 8fr 6fr;
     grid-template-rows: 1fr;
     width: 1000px;
   }
@@ -20,5 +21,10 @@
   span[role="leading"] {
     position: relative;
     top: -24px;
+  }
+
+  span[role="trailing"] {
+    position: relative;
+    top: 16px;
   }
 }

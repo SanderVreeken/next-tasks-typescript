@@ -1,0 +1,31 @@
+@use 'variables' as *;
+
+.log {
+  align-items: center;
+  border-bottom: 1px solid $main-border-color;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+
+  div[role="image"] {
+    background-image: url("../public/assets/profile.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 9999px;
+    height: 30px;
+    min-width: 30px;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 0 10px;
+    white-space: pre-wrap;
+  }
+
+  > span {
+    align-items: center;
+    display: flex;
+  }
+}
