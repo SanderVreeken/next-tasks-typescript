@@ -13,6 +13,8 @@ import useSWR from 'swr'
 import { READ_TASKS_QUERY } from '../graphql/queries/tasks'
 import { readTasks } from '../graphql/fetchers/tasks'
 import { useRouter } from 'next/router'
+import { prompts } from '../elements/modals'
+import { taskForm } from '../elements/forms'
 
 interface Props {
     authorized: boolean
@@ -42,7 +44,7 @@ export default function Board({ authorized, token }: Props) {
                 }
             }
             if (modal) {
-                elements.push(<Overlay />, <Modal selected={selected} type='task' />)
+                elements.push(<Overlay header={2} />, <Modal form={taskForm} formType='task' selected={selected} type='form' />)
             }
         } else {
             // This conditional will be rendered in case the project does not exist.
@@ -59,15 +61,15 @@ export default function Board({ authorized, token }: Props) {
         if (error) {
             return (
                 <>
-                    <Overlay />
-                    <Modal type='non-existent' />
+                    <Overlay header={2} />
+                    <Modal formType='task' prompt={prompts['non-existent']} type='prompt' />
                 </>
             )
         } else if (!authorized) {
             return (
                 <>
-                    <Overlay />
-                    <Modal type='unauthorized' />
+                    <Overlay header={2} />
+                    <Modal formType='task' prompt={prompts['unauthorized']} type='prompt' />
                 </>
             )
         }

@@ -19,6 +19,13 @@ export const passwordForgotField: FieldI = {
     type: 'text'
 }
 
+export const projectForm: FieldI[] = [{
+    element: 'input',
+    name: 'title',
+    title: 'Title',
+    type: 'text'
+}]
+
 export const registerForm: FieldI[] = [{
     element: 'input',
     name: 'username',

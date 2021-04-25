@@ -4,17 +4,23 @@ import { createTaskButton, updateTaskButtons } from '../elements/buttons'
 import { taskForm } from '../elements/forms'
 import { createTask, deleteTask, updateTask } from '../graphql/fetchers/tasks'
 import { CREATE_TASK_MUTATION, DELETE_TASK_MUTATION, UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
+import FieldI from '../interfaces/Field'
+import PromptI from '../interfaces/Prompt'
 import TaskI from '../interfaces/Task'
 import styles from '../styles/Modal.module.scss'
+import FormT from '../types/Form'
 import Form from './Form'
 import { useStateValue } from './StateProvider'
 
 interface Props {
+    form?: FieldI[]
+    formType?: FormT
+    prompt?: PromptI
     selected?: TaskI
-    type: 'non-existent' | 'task' | 'unauthorized'
+    type: 'form' | 'prompt'
 }
 
-export default function Modal({ selected, type }: Props) {
+export default function Modal({ form, formType, prompt, selected, type }: Props) {
     const router = useRouter()
     const [task, setTask] = useState<TaskI>(selected ?? {})
     const [, dispatch] = useStateValue()
@@ -82,40 +88,28 @@ export default function Modal({ selected, type }: Props) {
 
     const renderModal = () => {
         switch(type) {
-            case 'non-existent':
+            case 'prompt':
                 return (
                     <div className={styles.modal}>
                         <div role='top'>
-                            <h3>Oops!</h3> 
-                            <p>The project you are trying to access does not exist yet, would you create it?</p> 
+                            <h3>{prompt?.title}</h3> 
+                            <p>{prompt?.message}</p> 
                         </div>
                         <div role='bottom'>
                             
                         </div>
                     </div>
                 )
-            case 'task':
+            case 'form':
                 return (
                     <div className={styles.modal}>
                         <div role='top'>
-                            <Form form={taskForm} handleChange={handleChange} selected={!!selected} type={type} values={task} />
+                            <Form form={form!} handleChange={handleChange} selected={!!selected} type={formType!} values={task} />
                         </div>
                         <div role='bottom' style={{
                             gridTemplateColumns: selected ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)'
                         }}>
                             {renderButtons()}
-                        </div>
-                    </div>
-                )
-            case 'unauthorized':
-                return (
-                    <div className={styles.modal}>
-                        <div role='top'>
-                            <h3>Unauthorized!</h3> 
-                            <p>You are not a member of this project. Would you like to request access to this project?</p> 
-                        </div>
-                        <div role='bottom'>
-                            
                         </div>
                     </div>
                 )

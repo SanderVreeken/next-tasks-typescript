@@ -1,7 +1,11 @@
 import styles from '../styles/Overlay.module.scss'
 import { useStateValue } from './StateProvider'
 
-export default function Overlay() {
+interface Props {
+    header: 1 | 2
+}
+
+export default function Overlay({ header }: Props) {
     const [_, dispatch] = useStateValue()
 
     const handleClick = () => {
@@ -16,6 +20,8 @@ export default function Overlay() {
     }
 
     return (
-        <div className={styles.overlay} onClick={() => handleClick()}></div>
+        <div className={styles.overlay} onClick={() => handleClick()} style={{
+            top: `${header * 64}px`
+        }}></div>
     )
 }

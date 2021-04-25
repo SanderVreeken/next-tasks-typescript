@@ -4,8 +4,11 @@ import { useEffect } from 'react'
 import useSWR from 'swr'
 import Dashboard from '../../components/Dashboard'
 import Header from '../../components/Header'
+import Modal from '../../components/Modal'
+import Overlay from '../../components/Overlay'
 import Wrapper from '../../components/Wrapper'
 import { headerButtons } from '../../elements/buttons'
+import { projectForm } from '../../elements/forms'
 import { readProjects } from '../../graphql/fetchers/projects'
 import { readUser } from '../../graphql/fetchers/users'
 import { READ_PROJECTS_QUERY } from '../../graphql/queries/projects'
@@ -36,6 +39,8 @@ export default function Feed({ token }: Props) {
         <Header elements={headerButtons} />
         <Wrapper user={user} />
         <Dashboard projects={projects} user={user?.readUser} />
+        {/* <Overlay header={1} />
+        <Modal form={projectForm} formType='project' type='form' /> */}
       </main>
 
       <footer className={styles.footer}>

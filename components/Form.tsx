@@ -36,6 +36,19 @@ export default function Form({ form, handleChange, onClick, selected, type, valu
                         <Button onClick={(event) => onClick!(event)} theme={headerButtonTheme} title={renderTitle()} />  
                     </form>
                 )
+            case 'project':
+                return (
+                    // No buttons are included within the form, as they are delivered via the modal.
+                    <form className={styles.form}>
+                        <h3>New Project</h3>
+                        {form.map((field: FieldI) => (
+                            <>
+                                <label>{field.title}</label>
+                                <Field field={field} onChange={handleChange} value={values[field.name]} />
+                            </>
+                        ))}
+                    </form>
+                )
             case 'task':
                 return (
                     // No buttons are included within the form, as they are delivered via the modal.
@@ -49,7 +62,7 @@ export default function Form({ form, handleChange, onClick, selected, type, valu
                         ))}
                     </form>
                 )
-          }
+            }
     }
 
     const renderTitle = () => {

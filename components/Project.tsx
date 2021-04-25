@@ -44,7 +44,7 @@ export default function Project({ project, user }: Props) {
                 </span>
                 <span role='link'>
                     <HiUsers />
-                    <h5>{user.username}</h5>
+                    <h5>{user?.username}</h5>
                 </span>
             </span>
             <span role='bottom'>
