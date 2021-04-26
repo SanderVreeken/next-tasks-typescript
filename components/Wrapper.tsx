@@ -4,10 +4,11 @@ import { wrapperButtonTheme } from '../themes/button'
 import Button from './Button'
 
 interface Props {
+    handleClick: (...args: any) => void
     user: { readUser: UserI }
 }
 
-export default function Wrapper({ user }: Props) {
+export default function Wrapper({ handleClick, user }: Props) {  
     return (
         <span className={styles.wrapper}>
             <span>
@@ -16,7 +17,7 @@ export default function Wrapper({ user }: Props) {
                     <h1>{user?.readUser.username}</h1>
                 </span>
                 <span role='trailing'>
-                    <Button theme={wrapperButtonTheme} title='New Project' />
+                    <Button onClick={() => handleClick()} theme={wrapperButtonTheme} title='New Project' />
                 </span>
             </span>
         </span>

@@ -7,17 +7,13 @@ import { useStateValue } from './StateProvider'
 
 interface Props {
     handleChange: (...args: any) => void
+    setIsModal: (...args: any) => void
     value: string
 }
 
-export default function Navbar({ handleChange, value }: Props) {
-    const [_, dispatch] = useStateValue()
-
+export default function Navbar({ handleChange, setIsModal, value }: Props) {
     const handleClick = () => {
-        dispatch({
-            type: 'UPDATE_MODAL',
-            item: true
-        })
+        setIsModal(true)
     }
 
     return (

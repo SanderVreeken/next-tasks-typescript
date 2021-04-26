@@ -5,6 +5,7 @@ import Form from '../components/Form'
 import { registerForm } from '../elements/forms'
 import graphQLClient from '../graphql/client'
 import { CREATE_USER_MUTATION } from '../graphql/queries/users'
+import ProjectI from '../interfaces/Project'
 import styles from '../styles/Register.module.scss'
 
 export default function Register() {

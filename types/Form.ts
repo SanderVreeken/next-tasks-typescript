@@ -1,3 +1,3 @@
-type FormT = 'auth' | 'project' | 'task'
+type FormT = 'app' | 'auth'
 
 export default FormT

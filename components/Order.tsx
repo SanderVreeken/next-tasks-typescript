@@ -10,10 +10,11 @@ import { UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
 interface Props {
     meta: OrderI
     search?: string
+    handleTaskClick?: (...args: any) => void
     tasks?: TaskI[]
 }
 
-export default function Order({ meta, search, tasks }: Props) {
+export default function Order({ handleTaskClick, meta, search, tasks }: Props) {
     const [{ isOver, item }, drop] = useDrop({
         accept: ItemTypes.TASK,
         drop: async () => {
@@ -40,7 +41,7 @@ export default function Order({ meta, search, tasks }: Props) {
             })
 
             return filteredTasks.map(task => (
-                <Task task={task} />
+                <Task handleClick={handleTaskClick} task={task} />
             ))
         } else {
             const elements = []

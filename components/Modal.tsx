@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { createTaskButton, updateTaskButtons } from '../elements/buttons'
-import { taskForm } from '../elements/forms'
 import graphQLClient from '../graphql/client'
 import { createTask, deleteTask, updateTask } from '../graphql/fetchers/tasks'
 import { CREATE_TASK_MUTATION, DELETE_TASK_MUTATION, UPDATE_TASK_MUTATION } from '../graphql/queries/tasks'
@@ -12,79 +10,38 @@ import styles from '../styles/Modal.module.scss'
 import FormT from '../types/Form'
 import Form from './Form'
 import { useStateValue } from './StateProvider'
+import ButtonI from '../interfaces/Button'
 
 interface Props {
+    buttons: ButtonI[]
     form?: FieldI[]
-    formType?: FormT
+    handleClick: (...args: any) => void
     prompt?: PromptI
-    selected?: TaskI
+    state: any
+    stateFunction: (...args: any) => void
+    title: string
     type: 'form' | 'prompt'
 }
 
-export default function Modal({ form, formType, prompt, selected, type }: Props) {
-    const router = useRouter()
-    const [task, setTask] = useState<TaskI>(selected ?? {})
-    const [, dispatch] = useStateValue()
-
-    const removeTask = async () => {
-        try {
-            await deleteTask(DELETE_TASK_MUTATION, { _id: task._id })
-            dismiss()
-        } catch(error) {
-            console.log(error)
-        }
-    }
-
-    const dismiss = () => {
-        dispatch({
-            type: 'UPDATE_MODAL',
-            item: false
-        })
-        dispatch({
-            type: 'UPDATE_SELECTED',
-            item: undefined
-        })
-    }
-
+export default function Modal({ buttons, form, handleClick, prompt, state, stateFunction, title, type }: Props) {
     const handleChange = (key: string, value: any) => {
-        setTask({
-            ...task,
+        stateFunction({
+            ...state,
             [key]: value
         })
     }
 
     const renderButtons = () => {
-        const buttons = selected ? updateTaskButtons : createTaskButton
         const elements: any = []
-
-        const functions = [dismiss, submitTask, removeTask]
-
         buttons.map((button, index) => {
             elements.push(
                 // For this component custom buttons are being used.
-                <div onClick={() => functions[index]()} role='button'>
+                <div onClick={() => handleClick(index)} role='button'>
                     <p>{button.title.toUpperCase()}</p>
                 </div>
             )
         })
         return elements
-    }
-
-    const submitTask = async () => {
-        task.dueAt = new Date(task.dueAt!).valueOf()
-
-        try {
-            let response = {}
-            if (selected) {
-                response = await updateTask(UPDATE_TASK_MUTATION, { _id: selected._id, task: task })
-            } else {
-                task.project = router.query.alias as string
-                response = await graphQLClient.request(CREATE_TASK_MUTATION, { task: task })
-            }
-            dismiss()
-        } catch(error) {
-            console.log(error)
-        }
     }
 
     const renderModal = () => {
@@ -105,10 +62,10 @@ export default function Modal({ form, formType, prompt, selected, type }: Props)
                 return (
                     <div className={styles.modal}>
                         <div role='top'>
-                            <Form form={form!} handleChange={handleChange} selected={!!selected} type={formType!} values={task} />
+                            <Form form={form!} handleChange={handleChange} title={title} type='app' values={state} />
                         </div>
                         <div role='bottom' style={{
-                            gridTemplateColumns: selected ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)'
+                            gridTemplateColumns: `repeat(${buttons.length}, 1fr)`
                         }}>
                             {renderButtons()}
                         </div>

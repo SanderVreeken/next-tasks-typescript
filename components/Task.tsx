@@ -9,11 +9,12 @@ import { useDrag } from 'react-dnd'
 import { useStateValue } from './StateProvider'
 
 interface Props {
+    handleClick?: (...args: any) => void
     isLoading?: boolean
     task?: TaskI
 }
 
-export default function Task({ isLoading = false, task }: Props) {
+export default function Task({ handleClick, isLoading = false, task }: Props) {
     const [{ isDragging }, drag] = useDrag({
         item: {
             task,
@@ -24,17 +25,6 @@ export default function Task({ isLoading = false, task }: Props) {
         })
     })
     const [_, dispatch] = useStateValue()
-
-    const handleClick = () => {
-        dispatch({
-            type: 'UPDATE_MODAL',
-            item: true
-        })
-        dispatch({
-            type: 'UPDATE_SELECTED',
-            item: task
-        })
-    }
 
     const handleFlagClick = () => {
         console.log('Flag!🇳🇱')
@@ -60,7 +50,7 @@ export default function Task({ isLoading = false, task }: Props) {
                 <div className={styles.task} ref={drag} style={{
                     opacity: isDragging ? 0.5 : 1
                 }}>
-                    <div onClick={() => handleClick()} role='top'>
+                    <div onClick={() => handleClick!(task)} role='top'>
                         <h5>{task?.title}</h5>
                         <p role='description'>{task?.description}</p>
                     </div>
