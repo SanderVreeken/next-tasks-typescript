@@ -5,6 +5,7 @@
   border: 1px solid $main-border-color;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+  margin-bottom: 1rem;
 
   h2 {
     font-weight: 600;
@@ -16,7 +17,9 @@
 
   span[role="bottom"] {
     align-items: center;
+    display: flex;
     flex-direction: row;
+    height: 48px;
     justify-content: space-between;
     padding: 0 24px;
 

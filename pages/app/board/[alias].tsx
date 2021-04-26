@@ -25,6 +25,7 @@ export default function App({ token }: Props) {
   const [modalValues, setModalValues] = useState<TaskI>({}) 
   const { data: projects } = useSWR(token ? [READ_PROJECTS_QUERY, token] : null, readProjects)
 
+  // TODO: Authorization should be checked again with the modal and prompt.
   const authorized = () => {
       const path = router.query.alias
       const included = projects?.readProjects.filter((project: any) => {
