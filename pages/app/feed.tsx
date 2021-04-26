@@ -14,7 +14,6 @@ import { readProjects } from '../../graphql/fetchers/projects'
 import { readUser } from '../../graphql/fetchers/users'
 import { READ_LOGS_QUERY } from '../../graphql/queries/logs'
 import { CREATE_PROJECT_MUTATION, READ_PROJECTS_QUERY } from '../../graphql/queries/projects'
-import { CREATE_REPORT_MUTATION } from '../../graphql/queries/report'
 import { READ_USER_QUERY } from '../../graphql/queries/users'
 import ProjectI from '../../interfaces/Project'
 import styles from '../../styles/Feed.module.scss'
@@ -28,7 +27,7 @@ export default function Feed({ token }: Props) {
   const [isModal, setIsModal] = useState(false) 
   const [modalValues, setModalValues] = useState<ProjectI>({}) 
   const { data: logs } = useSWR(token ? [READ_LOGS_QUERY, token]: null, readLogs)
-  const { data: projects } = useSWR(token ? [READ_PROJECTS_QUERY, token] : null, readProjects)
+  const { data: projects } = useSWR(token ? [READ_PROJECTS_QUERY, token] : null, readProjects ,{ refreshInterval: 1000 })
   const { data: user } = useSWR(token ? [READ_USER_QUERY, token] : null, readUser)
 
   const handleModalClick = async (index: number) => {
@@ -37,17 +36,6 @@ export default function Feed({ token }: Props) {
     } else {
         await graphQLClient.request(CREATE_PROJECT_MUTATION, { title: modalValues.title })
         setIsModal(false)
-    }
-  }
-
-  // Function to get the base46 string to create a download for the report.
-  const handleReport = async () => {
-    try {
-      const response = await graphQLClient.request(CREATE_REPORT_MUTATION) 
-      const contentType = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'
-      router.push(contentType + response.createReport)
-    } catch(error) {
-      console.log(error)
     }
   }
 

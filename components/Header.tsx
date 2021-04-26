@@ -13,7 +13,8 @@ interface Props {
     subheader?: boolean
 }
 
-export default function Header({ elements, projects, subheader = false }: Props) {    
+export default function Header({ elements, projects, subheader = false }: Props) { 
+    console.log(projects)   
     const renderHeader = () => {
         if (subheader) { 
             return (
@@ -34,7 +35,7 @@ export default function Header({ elements, projects, subheader = false }: Props)
                 }}>
                     {elements?.map(element => (
                         // TODO: Replace the href with an actual page within the application.
-                        <Anchor href='/'>
+                        <Anchor href={element.href!}>
                             <Button icon={element.icon} title={element.title} theme={headerButtonTheme} />
                         </Anchor>
                     ))}

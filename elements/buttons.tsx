@@ -7,15 +7,19 @@ export const createTaskButtons = [{
 }]
 
 export const headerButtons = [{
+    href: '/app/backlog',
     icon: <AiOutlineCalendar />,
     title: 'Backlog'
 }, {
+    href: '/app/board',
     icon: <AiTwotoneAppstore />,
     title: 'Board'
 }, {
+    href: '/app/feed',
     icon: <AiFillRead />,
     title: 'Feed'
 }, {
+    href: '/app/reports',
     icon: <AiOutlineBarChart />,
     title: 'Reports'
 }]
