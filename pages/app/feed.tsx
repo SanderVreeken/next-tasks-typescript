@@ -54,8 +54,6 @@ export default function Feed({ token }: Props) {
         <Header elements={headerButtons} />
         <Wrapper handleClick={() => setIsModal(true)} user={user} />
         <Dashboard logs={logs} projects={projects} user={user?.readUser} />
-        {/* The download of a report could be realized with the button below and function above.  */}
-        {/* <div onClick={() => handleReport()}>Print Report</div> */}
         {renderModal(createProjectButtons, projectForm, handleModalClick, isModal, modalValues, setModalValues, 'New Project', 'form')}
       </main>
 

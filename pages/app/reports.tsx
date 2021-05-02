@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import Catalogue from '../../components/Catalogue'
 import Header from '../../components/Header'
+import ContentTypes from '../../constants/contentTypes'
 import { headerButtons } from '../../elements/buttons'
 import graphQLClient from '../../graphql/client'
 import { CREATE_REPORT_MUTATION } from '../../graphql/queries/report'
@@ -18,8 +20,8 @@ export default function Feed({ token }: Props) {
     const handleReport = async () => {
         try {
             const response = await graphQLClient.request(CREATE_REPORT_MUTATION) 
-            const contentType = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'
-            router.push(contentType + response.createReport)
+            const link = ContentTypes.excel + response.createReport
+            router.push(link)
         } catch(error) {
             console.log(error)
         }
@@ -38,6 +40,7 @@ export default function Feed({ token }: Props) {
 
             <main className={styles.main}>
                 <Header elements={headerButtons} />
+                <Catalogue />
                 {/* The download of a report could be realized with the button below and function above.  */}
                 <div onClick={() => handleReport()}>Print Report</div>
             </main>

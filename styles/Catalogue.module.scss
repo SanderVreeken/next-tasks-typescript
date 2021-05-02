@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+.catalogue {
+  display: flex;
+  justify-content: center;
+
+  span {
+    width: 100%;
+  }
+
+  > span {
+    // background-color: red;
+    min-height: 500px;
+    padding-top: 1rem;
+    width: 1000px;
+
+    span {
+      border-bottom: 1px solid $main-border-color;
+      display: flex;
+      padding-bottom: 1rem;
+    }
+  }
+}

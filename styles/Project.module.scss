@@ -74,3 +74,13 @@
     }
   }
 }
+
+@media only screen and (max-width: $max-width) {
+  .project {
+    span[role="bottom"] {
+      flex-direction: column;
+      height: fit-content;
+      padding: 0.875rem 0;
+    }
+  }
+}
