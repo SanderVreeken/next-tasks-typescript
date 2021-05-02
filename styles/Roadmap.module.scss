@@ -1,0 +1,44 @@
+.roadmap {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+
+  h2 {
+    background-clip: text;
+    background-image: linear-gradient(to right, #00dfd8, #007cf0);
+    margin: 1rem 0;
+    -webkit-text-fill-color: transparent;
+  }
+
+  h5 {
+    letter-spacing: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  > span {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  span[role="circle"] {
+    align-items: center;
+    background-image: linear-gradient(to right, #00dfd8, #007cf0);
+    border-radius: 20px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+
+    h4 {
+      color: white;
+    }
+  }
+
+  span[role="line"] {
+    background-image: linear-gradient(#ffffff, #007cf0);
+    height: 100px;
+    width: 1px;
+  }
+}

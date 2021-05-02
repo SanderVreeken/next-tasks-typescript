@@ -1,0 +1,39 @@
+.absolute {
+  color: black;
+  position: absolute;
+}
+
+.animation {
+  animation: gradient 9s ease-in infinite;
+  background-clip: text;
+  opacity: 0%;
+  text-align: center;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  h1 {
+    font-size: 8rem;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    margin: -20px 0;
+    padding: 0 1rem;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    opacity: 0%;
+  }
+  16% {
+    opacity: 100%;
+  }
+  66% {
+    opacity: 0%;
+  }
+}
